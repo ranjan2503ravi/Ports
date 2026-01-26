@@ -19,7 +19,7 @@ const About = () => {
         >
           <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden shadow-xl border border-zinc-800">
             <img
-              src="/src/assets/IMG20251122204112.jpg"
+              src="public/IMG20251122204112.jpg"
               alt="Ravi Ranjan Rajput"
               className="w-full h-full object-cover object-center"
               loading="lazy"

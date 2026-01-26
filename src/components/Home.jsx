@@ -87,7 +87,7 @@ const Home = () => {
         <motion.div initial={{ opacity: 0, scale: 0.85 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1, ease: "easeOut" }} className="flex justify-center lg:justify-end">
           <motion.div animate={{ rotate: [0, 3, -3, 0] }} transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }} className="relative w-72 h-72 md:w-96 md:h-96 rounded-full p-1 bg-gradient-to-tr from-blue-500 to-purple-500 shadow-xl">
             <div className="w-full h-full rounded-full overflow-hidden bg-black">
-              <img src="/src/assets/IMG20251122204112.jpg" alt="Ravi Ranjan Rajput" className="w-full h-full object-cover object-center scale-105" />
+              <img src="public/IMG20251122204112.jpg" alt="Ravi Ranjan Rajput" className="w-full h-full object-cover object-center scale-105" />
             </div>
           </motion.div>
         </motion.div>
