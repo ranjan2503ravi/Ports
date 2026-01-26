@@ -81,7 +81,7 @@ const Projects = () => {
             >
              
               <div className="h-44 bg-gradient-to-tr from-blue-600/20 to-purple-600/20 flex items-center justify-center text-zinc-500 text-sm">
-                hell
+                <img src="src/assets/Screen.png" alt="" />
               </div>
 
               <div className="p-6">
