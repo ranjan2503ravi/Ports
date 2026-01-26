@@ -9,7 +9,7 @@ const About = () => {
     >
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
 
-       
+
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -19,15 +19,16 @@ const About = () => {
         >
           <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden shadow-xl border border-zinc-800">
             <img
-              src="public/IMG20251122204112.jpg"
+              src="/IMG20251122204112.jpg"
               alt="Ravi Ranjan Rajput"
               className="w-full h-full object-cover object-center"
               loading="lazy"
             />
+
           </div>
         </motion.div>
 
-      
+
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
