@@ -1,102 +1,165 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaDownload } from "react-icons/fa";
+import ImageDistortion from "./ImageDistortion.jsx";
+import ParticlesBackground from "./ParticlesBackground.jsx";
+
+const roles = [
+  "React Frontend Engineer",
+  "Next.js Developer",
+  "UI/UX Focused Developer",
+  "Performance-Oriented Engineer",
+];
 
 const Home = () => {
-  const textVariant = {
-    hidden: { opacity: 0, y: 30 },
-    visible: (i = 1) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: i * 0.1, type: "spring", stiffness: 70 },
-    }),
-  };
+  const [text, setText] = useState("");
+  const [index, setIndex] = useState(0);
 
-  const buttonVariant = {
-    hover: { scale: 1.05, boxShadow: "0px 8px 20px rgba(59,130,246,0.4)" },
-  };
+  useEffect(() => {
+    let i = 0;
+    const current = roles[index];
 
-  const iconVariant = {
-    hidden: { opacity: 0, y: 20 },
-    visible: (i = 1) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: 1 + i * 0.2, type: "spring", stiffness: 70 },
-    }),
-  };
+    const typing = setInterval(() => {
+      setText(current.slice(0, i));
+      i++;
+
+      if (i > current.length) {
+        clearInterval(typing);
+        setTimeout(() => {
+          setIndex((prev) => (prev + 1) % roles.length);
+          setText("");
+        }, 1200);
+      }
+    }, 60);
+
+    return () => clearInterval(typing);
+  }, [index]);
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-zinc-950 via-black to-zinc-900 text-white px-6 relative overflow-hidden">
+    <section className="min-h-screen flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-20 relative overflow-hidden bg-[#050816] pt-14 pb-10">
 
-  
+      
+      <div className="absolute inset-0 z-0 opacity-60">
+         <ParticlesBackground /> 
+      </div>
+
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_30%_30%,rgba(56,189,248,0.12),transparent)]" />
+
+     
       <motion.div
-        animate={{ x: [0, 20, 0], y: [0, -20, 0] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[-150px] left-[-150px] w-[350px] h-[350px] bg-blue-600/20 rounded-full blur-3xl"
-      />
-      <motion.div
-        animate={{ x: [0, -20, 0], y: [0, 20, 0] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-[-150px] right-[-150px] w-[350px] h-[350px] bg-purple-600/20 rounded-full blur-3xl"
-      />
-
-      <div className="max-w-7xl w-full grid lg:grid-cols-2 gap-16 items-center relative z-10">
-       
-        <motion.div initial="hidden" animate="visible" className="flex flex-col">
-          <motion.span variants={textVariant} custom={1} className="inline-block mb-4 px-4 py-1 text-sm rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">
-            👋 Hello, I'm
-          </motion.span>
-
-          <motion.h1 variants={textVariant} custom={2} className="text-4xl md:text-6xl font-extrabold mb-5 tracking-tight">
-            {"Ravi Ranjan Rajput".split("").map((letter, i) => (
-              <motion.span key={i} variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 120 } } }}>{letter}</motion.span>
-            ))}
-          </motion.h1>
-
-          <motion.h2 variants={textVariant} custom={3} className="text-xl md:text-2xl text-blue-400 font-semibold mb-6">
-            Frontend Developer • React Specialist
-          </motion.h2>
-
-          <motion.p variants={textVariant} custom={4} className="text-zinc-300 max-w-2xl mb-10 leading-relaxed text-lg">
-            I craft high-performance, responsive, and scalable web interfaces
-            using React, JavaScript, Tailwind CSS, and modern frontend
-            architecture. Focused on clean UI, accessibility, and great user
-            experience.
-          </motion.p>
-
-          <motion.div variants={textVariant} custom={5} className="flex flex-wrap items-center gap-5">
-            <motion.a href="#projects" variants={buttonVariant} whileHover="hover" className="px-7 py-3.5 bg-blue-600 hover:bg-blue-700 transition-all rounded-full font-semibold shadow-lg shadow-blue-600/20">
-              View Work
-            </motion.a>
-
-            <motion.a href="/Ravi_Ranjan_Rajput_Resume.pdf" download variants={buttonVariant} whileHover="hover" className="flex items-center gap-2 px-7 py-3.5 border border-zinc-600 hover:border-blue-500 transition-all rounded-full font-semibold">
-              <FaDownload /> Resume
-            </motion.a>
-
-            <div className="flex items-center gap-4 text-2xl text-zinc-400">
-              {[FaGithub, FaLinkedin].map((Icon, i) => (
-                <motion.a key={i} href="#" target="_blank" rel="noreferrer" custom={i} initial="hidden" animate="visible" variants={iconVariant} className="hover:text-white transition-transform transform hover:-translate-y-1">
-                  <Icon />
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
-        </motion.div>
+        initial={{ opacity: 0, x: -60 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.7 }}
+        className="relative z-10 max-w-2xl text-center md:text-left"
+      >
 
         
-        <motion.div initial={{ opacity: 0, scale: 0.85 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1, ease: "easeOut" }} className="flex justify-center lg:justify-end">
-          <motion.div animate={{ rotate: [0, 3, -3, 0] }} transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }} className="relative w-72 h-72 md:w-96 md:h-96 rounded-full p-1 bg-gradient-to-tr from-blue-500 to-purple-500 shadow-xl">
-            <div className="w-full h-full rounded-full overflow-hidden bg-black">
-              <img
-  src="/IMG20251122204112.jpg"
-  alt="Ravi Ranjan Rajput"
-  className="w-full h-full object-cover object-center scale-105"
-/>
+        <div className="flex justify-center md:justify-start mb-6 pt-6">
+          <div className="px-5 py-2 rounded-full bg-white/5 border border-cyan-400/30 backdrop-blur-md">
+            <p className="text-cyan-300 text-xs tracking-[0.3em] font-medium">
+              FRONTEND ENGINEER • REACT • NEXT.JS • UI FOCUSED
+            </p>
+          </div>
+        </div>
 
-            </div>
+       
+        <h1 className="text-4xl md:text-6xl font-bold leading-tight text-white">
+          Hi, I’m <span className="text-cyan-400">Ravi</span> 👋
+          <br />
+          I turn complex problems into{" "}
+          <span className="text-cyan-400">fast & scalable</span> web apps.
+        </h1>
+
+       
+        <h2 className="text-lg md:text-2xl text-gray-300 mt-5 h-8">
+          {text}
+          <span className="animate-pulse">|</span>
+        </h2>
+
+       
+        <p className="text-gray-400 mt-6 leading-relaxed">
+          I specialize in building production-ready frontend applications using{" "}
+          <span className="text-white font-semibold">
+            React, Next.js and Tailwind CSS
+          </span>
+          . Focused on performance, clean architecture and smooth UX.
+        </p>
+
+        <p className="text-gray-500 mt-3 text-sm">
+          I don’t just design UI — I engineer experiences that feel premium and fast.
+        </p>
+
+       
+        <p className="text-cyan-300 text-sm mt-4">
+          ⚡ Available for Freelance • Remote • Full-time
+        </p>
+
+        
+        <div className="flex gap-4 justify-center md:justify-start mt-8">
+
+          <motion.div whileHover={{ scale: 1.05 }}>
+            <Link
+              to="/project"
+              className="bg-cyan-500 hover:bg-cyan-400 text-black font-semibold px-6 py-3 rounded-xl"
+            >
+              View Projects
+            </Link>
           </motion.div>
-        </motion.div>
-      </div>
+
+          <motion.div whileHover={{ scale: 1.05 }}>
+            <Link
+              to="/contact"
+              className="border border-white/20 px-6 py-3 rounded-xl text-white hover:border-cyan-400 hover:text-cyan-400"
+            >
+              Contact Me
+            </Link>
+          </motion.div>
+
+        </div>
+
+      
+        <div className="flex gap-8 mt-10 text-sm text-gray-400 justify-center md:justify-start">
+
+          <div>
+            <p className="text-white font-semibold text-lg">10+</p>
+            <p>Projects</p>
+          </div>
+
+          <div>
+            <p className="text-white font-semibold text-lg">React</p>
+            <p>Expertise</p>
+          </div>
+
+          <div>
+            <p className="text-white font-semibold text-lg">UI/UX</p>
+            <p>Focused</p>
+          </div>
+
+        </div>
+
+      </motion.div>
+
+      
+      <motion.div
+        initial={{ opacity: 0, x: 60 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.7 }}
+        className="relative z-10 mb-10 md:mb-0"
+      >
+        <ImageDistortion />
+      </motion.div>
+
+      
+      <motion.div
+        animate={{ y: [0, 10, 0] }}
+        transition={{ repeat: Infinity, duration: 1.5 }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10"
+      >
+        <div className="w-5 h-10 border-2 border-cyan-400 rounded-full flex justify-center">
+          <div className="w-1 h-2 bg-cyan-400 mt-2 rounded-full"></div>
+        </div>
+      </motion.div>
+
     </section>
   );
 };

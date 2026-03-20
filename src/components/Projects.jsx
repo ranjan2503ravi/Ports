@@ -1,132 +1,158 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { img } from "framer-motion/client";
-
-const projects = [
-  {
-    title: "Google Gemini AI Clone",
-    description:
-      "An AI-powered chatbot inspired by Google Gemini with real-time responses, conversation history, and modern UI.",
-    tech: ["React", "API Integration", "Tailwind", "Context API"],
-    live: "#",
-    github: "#",
-  },
-  {
-    title: "E-Commerce Web Application",
-    description:
-      "A full-featured e-commerce platform with product listing, cart, checkout flow, and responsive design.",
-    tech: ["React", "Redux", "Tailwind", "REST API"],
-    live: "https://gemini-clone-bi3e.vercel.app",
-    github: "#",
-  },
-  {
-    title: "Recipe Finder Application",
-    description:
-      "A recipe search app using public APIs with filters, favorites, and a clean, user-friendly interface.",
-    tech: ["React", "API Integration", "CSS", "Hooks"],
-    live: "https://ai-powered-recipe-generator-web-app.vercel.app/",
-    github: "https://github.com/ranjan2503ravi/AI-Powered-Recipe-Generator-Web-App",
-    img:"src/assets/Screen.png"
-  },
-];
+import { ExternalLink, Github } from "lucide-react";
+import ParticlesBackground from "./ParticlesBackground";
 
 const Projects = () => {
+  const projects = [
+    {
+      title: "Admin Dashboard",
+      desc: "Analytics dashboard with real-time UI and data visualization.",
+      img: "/2.jpg",
+      tech: ["Next.js", "React", "Tailwind"],
+      live: "#",
+      github: "#",
+      metric: "⚡ 40% faster workflow",
+    },
+    {
+      title: "Movie App",
+      desc: "Movie search app with API integration and trailer system.",
+      img: "/CineScope .png",
+      tech: ["React", "JS", "Tailwind"],
+      live: "https://movie-app-7dv9.vercel.app",
+      github: "https://github.com/ranjan2503ravi/movie-app",
+      metric: "🎬 10k+ searches simulated",
+    },
+    {
+      title: "AI Search Engine",
+      desc: "Smart AI-powered search interface with fast results.",
+      img: "/AI .png",
+      tech: ["Next.js", "AI API"],
+      live: "https://gemini-clone-azrw.vercel.app",
+      github: "https://github.com/ranjan2503ravi/gemini-clone",
+      metric: "⚡ 2x faster response UI",
+    },
+    {
+      title: "Recipe Generator",
+      desc: "AI recipe generator based on ingredients input.",
+      img: "/recipe.png",
+      tech: ["React", "Tailwind"],
+      live: "https://ai-powered-recipe-generator-web-app-ashen.vercel.app",
+      github: "https://github.com/ranjan2503ravi/recipe",
+      metric: "🍳 500+ outputs",
+    },
+    {
+      title: "Supercell Clone",
+      desc: "Gaming landing page with smooth animations.",
+      img: "/h.png",
+      tech: ["Next.js", "GSAP"],
+      live: "https://github.com/ranjan2503ravi/Supper",
+      github: "https://github.com/ranjan2503ravi/Supper",
+      metric: "🚀 95 Lighthouse score",
+    },
+  ];
+
   return (
-    <section
-      id="projects"
-      className="py-20 px-6 bg-gradient-to-b from-black via-zinc-950 to-black text-white"
-    >
-      <div className="max-w-6xl mx-auto">
-       
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="text-center mb-14"
-        >
-          <span className="inline-block mb-4 px-4 py-1 text-sm rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">
-            Projects
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold">Featured Work</h2>
-          <p className="text-zinc-400 mt-3 max-w-2xl mx-auto">
-            A selection of projects demonstrating my ability to build modern,
-            scalable, and user-focused web applications.
-          </p>
-        </motion.div>
+    <section className="relative min-h-screen bg-[#050816] text-white px-6 md:px-20 py-24 overflow-hidden">
 
-        
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={{
-            hidden: {},
-            visible: {
-              transition: {
-                staggerChildren: 0.12,
-              },
-            },
-          }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              className="group bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all"
-            >
+      <ParticlesBackground />
+
+     
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute w-[500px] h-[500px] bg-cyan-500/10 blur-[180px] rounded-full top-10 left-10 animate-pulse" />
+        <div className="absolute w-[400px] h-[400px] bg-purple-500/10 blur-[180px] rounded-full bottom-10 right-10 animate-pulse" />
+      </div>
+
+      
+      <div className="text-center relative z-10 max-w-3xl mx-auto">
+        <div className="inline-block px-4 py-1 mb-4 text-xs rounded-full bg-cyan-500/10 border border-cyan-400/20 text-cyan-300">
+          🚀 Selected Work • Production Level UI
+        </div>
+
+        <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+          Building <span className="text-cyan-400">Scalable</span>,{" "}
+          <span className="text-purple-400">Fast</span> &{" "}
+          <span className="text-blue-400">Modern</span> Apps
+        </h1>
+
+        <p className="text-gray-400 mt-5 text-sm md:text-base">
+          Projects focused on performance, UX, and scalable frontend architecture.
+        </p>
+      </div>
+
+      
+      <div className="relative z-10 mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        {projects.map((project, i) => (
+          <motion.div
+            key={i}
+            whileHover={{ y: -10, scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 200 }}
+            className="group bg-white/5 backdrop-blur-xl border border-white/10 
+            rounded-2xl overflow-hidden hover:border-cyan-400/40 
+            hover:shadow-[0_0_40px_rgba(34,211,238,0.15)] transition"
+          >
+
+            
+            <div className="h-44 overflow-hidden">
+              <img
+                src={project.img}
+                alt={project.title}
+                className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+              />
+            </div>
+
+            <div className="p-5">
+
+              
+              <h2 className="text-lg font-semibold group-hover:text-cyan-400 transition">
+                {project.title}
+              </h2>
+
+              <p className="text-gray-400 text-sm mt-2">
+                {project.desc}
+              </p>
+
+              
+              <div className="mt-3 inline-block text-xs px-3 py-1 rounded-full bg-green-500/10 text-green-300 border border-green-400/20">
+                {project.metric}
+              </div>
+
              
-              <div className="h-44 bg-gradient-to-tr from-blue-600/20 to-purple-600/20 flex items-center justify-center text-zinc-500 text-sm">
-                <img src="src/assets/Screen.png" alt="" />
+              <div className="flex flex-wrap gap-2 mt-4">
+                {project.tech.map((tech, index) => (
+                  <span
+                    key={index}
+                    className="text-xs px-2 py-1 rounded-full bg-white/5 border border-white/10 text-gray-300"
+                  >
+                    {tech}
+                  </span>
+                ))}
               </div>
 
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2 group-hover:text-blue-400 transition">
-                  {project.title}
-                </h3>
-                <p className="text-zinc-400 mb-4 leading-relaxed">
-                  {project.description}
-                </p>
+             
+              <div className="flex justify-between mt-6">
 
-               
-                <div className="flex flex-wrap gap-2 mb-5">
-                  {project.tech.map((tech, i) => (
-                    <span
-                      key={i}
-                      className="text-xs px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+                <a
+                  href={project.github}
+                  className="flex items-center gap-2 text-sm text-gray-300 hover:text-cyan-400 transition"
+                >
+                  <Github size={18} /> Code
+                </a>
 
-               
-                <div className="flex gap-4">
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="px-4 py-2 text-sm rounded-full bg-blue-600 hover:bg-blue-700 transition font-medium"
-                  >
-                    Live Demo
-                  </a>
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="px-4 py-2 text-sm rounded-full border border-zinc-600 hover:border-blue-500 transition font-medium"
-                  >
-                    GitHub
-                  </a>
-                </div>
+                <a
+                  href={project.live}
+                  className="flex items-center gap-2 text-sm text-gray-300 hover:text-cyan-400 transition"
+                >
+                  <ExternalLink size={18} /> Live
+                </a>
+
               </div>
-            </motion.div>
-          ))}
-        </motion.div>
+
+            </div>
+          </motion.div>
+        ))}
+
       </div>
     </section>
   );

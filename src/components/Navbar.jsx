@@ -1,86 +1,107 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { motion } from "framer-motion";
+import { NavLink, Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
-const links = [
-  { name: "Home", path: "/" },
-  { name: "About", path: "/about" },
-  { name: "Skills", path: "/skills" },
-  { name: "Projects", path: "/projects" },
-  { name: "Contact", path: "/contact" },
-];
-
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const links = [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Projects", path: "/project" },
+    { name: "Contact", path: "/contact" },
+  ];
 
   return (
     <motion.nav
-      initial={{ y: -100, opacity: 0 }}
+      initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, type: "spring" }}
-      className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-black/70 shadow-lg"
+      transition={{ duration: 0.6 }}
+      className="fixed top-0 left-0 w-full z-50 
+      bg-slate-900/60 backdrop-blur-xl 
+      border-b border-white/10"
     >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <NavLink to="/" className="text-2xl font-bold text-white">
-          RaviRanjan<span className="text-blue-500">.</span>
-        </NavLink>
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
-        <div className="hidden md:flex gap-8 items-center">
-          {links.map((link, index) => (
-            <motion.div
+        
+        <motion.h1
+          whileHover={{ scale: 1.05 }}
+          className="text-xl md:text-2xl font-bold 
+          bg-gradient-to-r from-cyan-400 to-blue-500 
+          bg-clip-text text-transparent tracking-wide"
+        >
+          RaviRanjan.dev
+        </motion.h1>
+
+       
+        <div className="hidden md:flex items-center gap-10">
+          {links.map((link) => (
+            <NavLink
               key={link.name}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
+              to={link.path}
+              className="relative text-sm text-gray-300 hover:text-cyan-400 transition"
             >
-              <NavLink
-                to={link.path}
-                className={({ isActive }) =>
-                  `relative text-sm font-medium transition-colors ${
-                    isActive
-                      ? "text-blue-500"
-                      : "text-gray-300 hover:text-blue-500"
-                  }`
-                }
-              >
-                {link.name}
-                <span className="absolute left-0 -bottom-1 w-full h-0.5 bg-blue-500 scale-x-0 hover:scale-x-100 transition-transform origin-left" />
-              </NavLink>
-            </motion.div>
+              {({ isActive }) => (
+                <span className="relative">
+                  {link.name}
+
+                  {isActive && (
+                    <motion.span
+                      layoutId="activeTab"
+                      className="absolute left-0 -bottom-1 w-full h-[2px] bg-cyan-400 rounded-full"
+                    />
+                  )}
+                </span>
+              )}
+            </NavLink>
           ))}
+
+          
+          <Link
+            to="/resume"
+            className="bg-cyan-500 px-4 py-2 rounded-lg text-sm"
+          >
+            Resume
+          </Link>
         </div>
 
-        <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={26} /> : <Menu size={26} />}
-        </button>
+       
+        <div className="md:hidden">
+          <button onClick={() => setOpen(!open)}>
+            {open ? <X /> : <Menu />}
+          </button>
+        </div>
       </div>
 
-      {isOpen && (
-        <motion.div
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: "auto", opacity: 1 }}
-          transition={{ duration: 0.3 }}
-          className="md:hidden bg-black shadow-lg px-6 pb-4"
-        >
-          <div className="flex flex-col gap-4 pt-4">
-            {links.map((link) => (
-              <NavLink
-                key={link.name}
-                to={link.path}
-                onClick={() => setIsOpen(false)}
-                className={({ isActive }) =>
-                  `text-base font-medium ${
-                    isActive ? "text-blue-500" : "text-gray-300"
-                  }`
-                }
-              >
-                {link.name}
-              </NavLink>
-            ))}
-          </div>
-        </motion.div>
-      )}
+      
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="md:hidden overflow-hidden bg-slate-900/90 px-6 pb-4"
+          >
+            <div className="flex flex-col gap-4 pt-4">
+              {links.map((link) => (
+                <NavLink
+                  key={link.name}
+                  to={link.path}
+                  onClick={() => setOpen(false)}
+                  className={({ isActive }) =>
+                    `text-sm transition ${
+                      isActive ? "text-cyan-400" : "text-gray-300"
+                    }`
+                  }
+                >
+                  {link.name}
+                </NavLink>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 };

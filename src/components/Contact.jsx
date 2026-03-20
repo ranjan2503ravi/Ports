@@ -1,121 +1,107 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import ParticlesBackground from './ParticlesBackground'
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
+  const [form, setForm] = useState({
     name: "",
     email: "",
     message: "",
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    console.log("Form Data:", formData);
-    alert("Thank you! Your message has been sent.");
-    setFormData({ name: "", email: "", message: "" });
+    alert("Message sent successfully 🚀 (Frontend Demo)");
+    setForm({ name: "", email: "", message: "" });
   };
 
   return (
-    <section
-      id="contact"
-      className="py-20 px-6 bg-gradient-to-b from-black via-zinc-950 to-black text-white"
-    >
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+    <section className="relative min-h-screen flex items-center justify-center px-6 md:px-20 py-24 bg-[#050816] overflow-hidden">
 
-      
-        <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-        >
-          <span className="inline-block mb-4 px-4 py-1 text-sm rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">
-            Contact
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Let's Work Together
-          </h2>
-          <p className="text-zinc-400 mb-8 max-w-md leading-relaxed">
-            I'm open to freelance work, internships, and full-time frontend
-            opportunities. Feel free to reach out — I'd love to connect!
-          </p>
+     
+      <ParticlesBackground />
 
-          <div className="space-y-4 text-zinc-300">
-            <p>
-              📧 Email:{" "}
-              <a
-                href="mailto:your-email@gmail.com"
-                className="text-blue-400 hover:underline"
-              >
-                ranjan2503ravi@gmail.com
-              </a>
-            </p>
-            <p>
-              📞 Phone:{" "}
-              <span className="text-blue-400">7979056132</span>
-            </p>
-            <p>
-              📍 Location:{" "}
-              <span className="text-blue-400">Bhopal</span>
-            </p>
-          </div>
-        </motion.div>
+     
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="relative z-10 w-full max-w-2xl bg-white/5 backdrop-blur-xl 
+        border border-white/10 rounded-2xl p-8 md:p-12 shadow-[0_0_80px_rgba(0,0,0,0.6)]"
+      >
 
         
-        <motion.form
-          initial={{ opacity: 0, x: 40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          onSubmit={handleSubmit}
-          className="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 shadow-xl"
-        >
-          <div className="grid gap-5">
-            <input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white focus:outline-none focus:border-blue-500 transition"
-            />
+        <div className="text-center mb-8">
+          <h1 className="text-4xl md:text-5xl font-bold text-white">
+            Contact <span className="text-cyan-400">Me</span>
+          </h1>
+          <p className="text-gray-400 mt-3 text-sm md:text-base">
+            Let’s build something meaningful together 🚀
+          </p>
+        </div>
 
-            <input
-              type="email"
-              name="email"
-              placeholder="Your Email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white focus:outline-none focus:border-blue-500 transition"
-            />
+        
+        <form onSubmit={handleSubmit} className="space-y-5">
 
-            <textarea
-              name="message"
-              placeholder="Your Message"
-              rows="5"
-              value={formData.message}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white focus:outline-none focus:border-blue-500 transition resize-none"
-            ></textarea>
+          <input
+            type="text"
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            placeholder="Your Name"
+            aria-label="Your Name"
+            className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-lg text-white 
+            outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition"
+            required
+          />
 
-            <button
-              type="submit"
-              className="w-full py-3 rounded-lg bg-blue-600 hover:bg-blue-700 transition font-semibold"
-            >
-              Send Message
-            </button>
-          </div>
-        </motion.form>
+          <input
+            type="email"
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+            placeholder="Your Email"
+            aria-label="Your Email"
+            className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-lg text-white 
+            outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition"
+            required
+          />
 
-      </div>
+          <textarea
+            name="message"
+            value={form.message}
+            onChange={handleChange}
+            rows="5"
+            placeholder="Your Message"
+            aria-label="Your Message"
+            className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-lg text-white 
+            outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition resize-none"
+            required
+          />
+
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
+            type="submit"
+            className="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-semibold py-3 rounded-lg transition shadow-md hover:shadow-lg"
+          >
+            Send Message
+          </motion.button>
+
+        </form>
+
+        
+        <div className="mt-8 text-center text-gray-400 text-sm space-y-1">
+          <p>📧 <a href="mailto:ranjan2503ravi@gmail.com" className="hover:text-cyan-400 transition">ranjan2503ravi@gmail.com</a></p>
+          <p>📍 India</p>
+        </div>
+
+      </motion.div>
+
     </section>
   );
 };

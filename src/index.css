@@ -1,14 +1,21 @@
 @import "tailwindcss";
 
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
 @import url('https://fonts.googleapis.com/css2?family=Alice&display=swap');
 
 body {
   font-family: 'Alice', serif;
 } 
+
+@keyframes shine {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.shine-text {
+  background-size: 200% auto;
+  animation: shine 3s linear infinite;
+}

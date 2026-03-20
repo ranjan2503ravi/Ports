@@ -1,26 +1,38 @@
-import React from 'react';
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
-import Layout from './Layout';
-import Home from './components/Home';
-import About from './components/About';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Contact from './components/Contact';
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
 
-const App = () => {
+import ParticlesBackground from "./Components/ParticlesBackground";
+import Layout from "./Layout";
+
+import Home from "./Components/Home";
+import About from "./Components/About";
+import Projects from "./Components/Projects";
+import Contact from "./Components/Contact";
+import Resume from "./Components/Resume";
+
+function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path='/' element={<Layout />}>
+      <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path='about' element={<About />} />
-        <Route path='skills' element={<Skills />} />
-        <Route path='projects' element={<Projects />} />
-        <Route path='contact' element={<Contact />} />
+        <Route path="about" element={<About />} />
+        <Route path="project" element={<Projects />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="resume" element={<Resume />} />
       </Route>
     )
   );
 
-  return <RouterProvider router={router} />;
-};
+  return (
+    <div className="relative min-h-screen bg-white text-black">
+      <ParticlesBackground />
+      <RouterProvider router={router} />
+    </div>
+  );
+}
 
 export default App;
