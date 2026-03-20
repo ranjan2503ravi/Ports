@@ -11,7 +11,7 @@ import Layout from "./Layout";
 import Home from "./Components/Home";
 import About from "./Components/About";
 import Projects from "./Components/Projects";
-import Contact from "./Components/Contact";
+import Contact from "./components/Contact";
 import Resume from "./Components/Resume";
 
 function App() {
